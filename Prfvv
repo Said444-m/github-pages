@@ -1,0 +1,257 @@
+<header>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приколы для Ярика</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffeb3b;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.5s;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px #ccc;
+        }
+        
+        .joke {
+            margin: 30px 0;
+            padding: 15px;
+            border: 2px dashed #4caf50;
+            border-radius: 10px;
+            background-color: #e8f5e9;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .joke:hover {
+            transform: scale(1.03);
+        }
+        
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2e7d32;
+            transform: scale(1.1);
+        }
+        
+        #surprise {
+            display: none;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #e91e63;
+            font-weight: bold;
+        }
+        
+        .yarik-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #e91e63;
+            margin: 20px;
+            transition: all 0.5s;
+        }
+        
+        .yarik-img:hover {
+            transform: rotate(360deg);
+        }
+        
+        .rainbow-text {
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 2s linear infinite;
+        }
+        
+        @keyframes rainbow {
+            0% {background-position: 0% 50%;}
+            100% {background-position: 100% 50%;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.imgur.com/dZ8Q6zO.png" alt="Ярик" class="yarik-img" id="yarikPhoto">
+        <h1 class="rainbow-text">Приколы для <span id="name">Ярика</span>!</h1>
+        
+        <div class="joke" onclick="this.innerHTML = 'Потому что он Ярик! Ха-ха!'">
+            Почему Ярик переходит дорогу? <br><small>(нажми, чтобы узнать ответ)</small>
+        </div>
+        
+        <div class="joke" onclick="this.innerHTML = 'Чтобы проверить, не украл ли Ярик его носки!'">
+            Зачем программист ходит в гости к Ярику? <br><small>(нажми, чтобы узнать ответ)</small>
+        </div>
+        
+        <div class="joke" onclick="this.innerHTML = 'Потому что Ярик уже съел все нормальные!'">
+            Почему в магазине остались только кривые огурцы? <br><small>(нажми, чтобы узнать ответ)</small>
+        </div>
+        
+        <button onclick="showSurprise()">Нажми для сюрприза!</button>
+        <div id="surprise"></div>
+        
+        <button onclick="changeBackground()">Сменить цвет фона</button>
+        
+        <button onclick="danceYarik()">Заставь Ярика танцевать!</button>
+    </div>
+    
+    <script>
+        function showSurprise() {
+            const surprises = [
+                "Ярик, ты самый лучший!",
+                "Ярик - король приколов!",
+                "Кто тут у нас? Да это же Ярик!",
+                "Ярик, не вешай нос!",
+                "Ты знал, что Ярик - самое крутое имя?"
+            ];
+            const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+            document.getElementById('surprise').style.display = 'block';
+            document.getElementById('surprise').textContent = randomSurprise;
+            
+            // Анимация
+            setTimeout(() => {
+                document.getElementById('surprise').style.fontSize = '40px';
+                document.getElementById('surprise').style.color = '#ff5722';
+            }, 100);
+            
+            setTimeout(() => {
+                document.getElementById('surprise').style.fontSize = '24px';
+                document.getElementById('surprise').style.color = '#e91e63';
+            }, 1000);
+        }
+        
+        function changeBackground() {
+            const colors = ['#ffeb3b', '#b3e5fc', '#d1c4e9', '#c8e6c9', '#ffccbc'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        }
+        
+        function danceYarik() {
+            const yarik = document.getElementById('yarikPhoto');
+            yarik.style.animation = 'dance 0.5s infinite';
+            
+            setTimeout(() => {
+                yarik.style.animation = 'none';
+            }, 3000);
+        }
+        
+        // Добавляем стили для танца
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes dance {
+                0%, 100% { transform: rotate(0deg) scale(1); }
+                25% { transform: rotate(10deg) scale(1.1); }
+                50% { transform: rotate(-10deg) scale(1.2); }
+                75% { transform: rotate(10deg) scale(1.1); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Меняем имя при клике
+        document.getElementById('name').addEventListener('click', function() {
+            const names = ['Ярик', 'Ярослав', 'Яричек', 'Ярикус', 'Ярикандр'];
+            this.textContent = names[Math.floor(Math.random() * names.length)];
+        });
+    </script>
+</body>
+</html>
+<!--
+  <<< Author notes: Course header >>>
+  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
+  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
+  Add your open source license, GitHub uses MIT license.
+-->
+
+# GitHub Pages
+
+_Create a site or blog from your GitHub repositories with GitHub Pages._
+
+</header>
+
+<!--
+  <<< Author notes: Course start >>>
+  Include start button, a note about Actions minutes,
+  and tell the learner why they should take the course.
+-->
+
+## Welcome
+
+With GitHub Pages, you can host project blogs, documentation, resumes, portfolios, or any other static content you'd like. Your GitHub repository can easily become its own website. In this course, we'll show you how to set up your own site or blog using GitHub Pages.
+
+- **Who is this for**: Beginners, students, project maintainers, small businesses.
+- **What you'll learn**: How to build a GitHub Pages site.
+- **What you'll build**: We'll build a simple GitHub Pages site with a blog. We'll use [Jekyll](https://jekyllrb.com), a static site generator.
+- **Prerequisites**: If you need to learn about branches, commits, and pull requests, take [Introduction to GitHub](https://github.com/skills/introduction-to-github) first.
+- **How long**: This course takes less than one hour to complete.
+
+In this course, you will:
+
+1. Enable GitHub Pages
+2. Configure your site
+3. Customize your home page
+4. Create a blog post
+5. Merge your pull request
+
+### How to start this course
+
+<!-- For start course, run in JavaScript:
+'https://github.com/new?' + new URLSearchParams({
+  template_owner: 'skills',
+  template_name: 'github-pages',
+  owner: '@me',
+  name: 'skills-github-pages',
+  description: 'My clone repository',
+  visibility: 'public',
+}).toString()
+-->
+
+[![start-course](https://user-images.githubusercontent.com/1221423/235727646-4a590299-ffe5-480d-8cd5-8194ea184546.svg)](https://github.com/new?template_owner=skills&template_name=github-pages&owner=%40me&name=skills-github-pages&description=My+clone+repository&visibility=public)
+
+1. Right-click **Start course** and open the link in a new tab.
+2. In the new tab, most of the prompts will automatically fill in for you.
+   - For owner, choose your personal account or an organization to host the repository.
+   - We recommend creating a public repository, as private repositories will [use Actions minutes](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
+   - Scroll down and click the **Create repository** button at the bottom of the form.
+3. After your new repository is created, wait about 20 seconds, then refresh the page. Follow the step-by-step instructions in the new repository's README.
+
+<footer>
+
+<!--
+  <<< Author notes: Footer >>>
+  Add a link to get support, GitHub status page, code of conduct, license link.
+-->
+
+---
+
+Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
+
+&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+
+</footer>
